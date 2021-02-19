@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+    <form action="{% url 'user:user_login' %}" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
+        {% csrf_token %}
+
+        {{ form.username }}
+        <label for="{{ form.username.id_for_label }}">Email</label>
+        {% for error in form.errors.username %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+
+        <br>
+        {{ form.password }}
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {% for error in form.errors.password %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+        <br>
+        <button type="submit" name="action">
+            ავტორიზაცია
+        </button>
+    <br>
+    <a href="{% url "user:user_registration" %}">რეგისტრაცია</a>
+
+{% endblock %}
+
